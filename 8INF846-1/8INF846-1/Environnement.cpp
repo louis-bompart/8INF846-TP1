@@ -1,5 +1,3 @@
-#include <vector>
-#include "CaseEnvironnement.h"
 #include "Environnement.h"
 
 
@@ -18,9 +16,9 @@ Environnement::Environnement()
     }
 }
 
-std::vector<std::vector<CaseEnvironnement>> Environnement::getEnv()
+void Environnement::Execute()
 {
-    return cases;
+
 }
 
 

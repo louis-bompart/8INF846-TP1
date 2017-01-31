@@ -3,5 +3,7 @@ class Aspirateur {
 public:
     Aspirateur();
     ~Aspirateur();
+
+    void Execute();
 };
 

@@ -5,6 +5,11 @@ Aspirateur::Aspirateur()
 {
 }
 
+void Aspirateur::Execute()
+{
+
+}
+
 
 Aspirateur::~Aspirateur()
 {
