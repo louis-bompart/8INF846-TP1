@@ -17,7 +17,7 @@ int main()
 
         for (unsigned int i = 0; i < env->Cases().size(); i++) {
             for (unsigned int j = 0; j < env->Cases()[i].size(); j++) {
-                std::cout << "*" ;
+                std::cout << " " << env->Cases()[i][j].Poussiere() << "|" << env->Cases()[i][j].Jewels() << ((asp->Position()[1] == i && asp->Position()[0] == j )? "*" : " ");
             }
             std::cout << std::endl;
         }
@@ -25,7 +25,7 @@ int main()
         thread_env.join();
         thread_asp.join();
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         system("cls");
     }
 

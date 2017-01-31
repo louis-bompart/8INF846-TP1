@@ -3,6 +3,8 @@
 
 CaseEnvironnement::CaseEnvironnement()
 {
+    Poussiere(0);
+    Jewels(0);
 }
 
 
