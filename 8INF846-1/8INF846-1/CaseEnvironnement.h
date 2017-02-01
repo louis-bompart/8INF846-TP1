@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 class CaseEnvironnement {
 public:
     CaseEnvironnement();
@@ -21,7 +23,11 @@ public:
         jewels = val;
     }
 
+	std::vector<CaseEnvironnement*> AdjacentRooms() const { return adjacentRooms; }
+	void AdjacentRooms(std::vector<CaseEnvironnement*> val) { adjacentRooms = val; }
+
 private:
+	std::vector<CaseEnvironnement*> adjacentRooms;
     int poussiere;
     int jewels;
 };

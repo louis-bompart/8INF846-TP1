@@ -147,11 +147,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="8INF846.cpp" />
+    <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Aspirateur.cpp" />
     <ClCompile Include="CaseEnvironnement.cpp" />
     <ClCompile Include="Environnement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aspirateur.h" />
     <ClInclude Include="CaseEnvironnement.h" />
     <ClInclude Include="Environnement.h" />

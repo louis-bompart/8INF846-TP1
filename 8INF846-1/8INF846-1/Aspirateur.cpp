@@ -1,15 +1,22 @@
 #include "Aspirateur.h"
+#include <iostream>
+#include <time.h>
+#include <thread>
 
-
-Aspirateur::Aspirateur()
+Aspirateur::Aspirateur(CaseEnvironnement* ce)
 {
-    position.push_back(0);
-    position.push_back(0);
+	currentRoom = ce;
 }
 
 void Aspirateur::Execute()
 {
-
+	while (true) {
+		srand(time(NULL));
+		std::vector<CaseEnvironnement*> adjRooms = currentRoom->AdjacentRooms();
+		int random = rand() % (adjRooms.size());
+		currentRoom = adjRooms[random];
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
 }
 
 

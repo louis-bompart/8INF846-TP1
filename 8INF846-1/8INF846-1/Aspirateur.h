@@ -1,24 +1,19 @@
 #pragma once
 #include <vector>
+#include "CaseEnvironnement.h"
 
 class Aspirateur {
 public:
-    Aspirateur();
+    Aspirateur(CaseEnvironnement* ce);
     ~Aspirateur();
 
     void Execute();
 
-    std::vector<int> Position() const
-    {
-        return position;
-    }
-    void Position(std::vector<int> val)
-    {
-        position = val;
-    }
+	CaseEnvironnement* CurrentRoom() const { return currentRoom; }
+	void CurrentRoom(CaseEnvironnement* val) { currentRoom = val; }
 
 private:
-    std::vector<int> position;
+    CaseEnvironnement* currentRoom;
     std::vector<int[2]> Goals;
 };
 

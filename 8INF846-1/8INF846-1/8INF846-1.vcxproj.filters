@@ -27,6 +27,9 @@
     <ClCompile Include="Aspirateur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Affichage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aspirateur.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Environnement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Affichage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
