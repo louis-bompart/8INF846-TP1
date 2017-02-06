@@ -3,7 +3,7 @@
 
 #include "Environnement.h"
 
-Environnement::Environnement()
+Environnement::Environnement() : jewelsLost(0)
 {
 	int taille = 5;
 	CaseEnvironnement* aCase;
@@ -39,27 +39,6 @@ Environnement::Environnement()
 		}
 	}
 }
-
-
-void Environnement::Execute()
-{
-	while (true) {
-		int random = rand() % 3;
-		int randomDust;
-		int randomJewels;
-		for (int i = 0; i < random; i++) {
-			randomDust = rand() % allRooms.size();
-			allRooms[randomDust]->Poussiere(1);
-		}
-		random = rand() % 2;
-		for (int i = 0; i < random; i++) {
-			randomJewels = rand() % allRooms.size();
-			allRooms[randomJewels]->Jewels(1);
-		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	}
-}
-
 
 Environnement::~Environnement()
 {

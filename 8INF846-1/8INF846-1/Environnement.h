@@ -2,28 +2,21 @@
 #include <vector>
 #include "CaseEnvironnement.h"
 
-
 class Environnement {
 public:
-	static Environnement* GetInstance() {
-		if (instance == nullptr) {
-			instance = new Environnement();
-		}
-		return instance;
-	}
 
-	std::vector<std::vector<CaseEnvironnement*>> Cases() const
-	{
-		return cases;
-	}
-	void Execute();
-
-private:
-	std::vector<std::vector<CaseEnvironnement*>> cases;
-	std::vector<CaseEnvironnement*> allRooms;
-	static Environnement* instance;
+	virtual int getJewelsLost() = 0;
+	virtual void ClearCase(CaseEnvironnement* suckedCase) = 0;
+	virtual bool RemoveJewel(CaseEnvironnement* suckedCase) = 0;
+	std::vector<CaseEnvironnement*> getAllRooms() { return allRooms; }
 
 	Environnement();
 	~Environnement();
+
+protected:
+
+	std::vector<CaseEnvironnement*> allRooms;
+	int jewelsLost;
+	std::vector<std::vector<CaseEnvironnement*>> cases;
 };
 

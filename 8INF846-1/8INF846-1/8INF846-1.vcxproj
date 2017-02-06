@@ -151,12 +151,20 @@
     <ClCompile Include="Aspirateur.cpp" />
     <ClCompile Include="CaseEnvironnement.cpp" />
     <ClCompile Include="Environnement.cpp" />
+    <ClCompile Include="GlobalEnvironnement.cpp" />
+    <ClCompile Include="RobotEnvironnement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aspirateur.h" />
     <ClInclude Include="CaseEnvironnement.h" />
     <ClInclude Include="Environnement.h" />
+    <ClInclude Include="GlobalEnvironnement.h" />
+    <ClInclude Include="RobotEnvironnement.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@
 #include "Affichage.h"
 
 
-Affichage::Affichage(Environnement* env, Aspirateur* asp)
+Affichage::Affichage(GlobalEnvironnement* env, Aspirateur* asp)
 {
 	this->env = env;
 	this->asp = asp;

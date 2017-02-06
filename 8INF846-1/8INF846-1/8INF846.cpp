@@ -1,13 +1,13 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "Environnement.h"
+#include "GlobalEnvironnement.h"
 #include "Aspirateur.h"
 #include "Affichage.h"
 
 int main()
 {
-    Environnement* env = new Environnement();
+	GlobalEnvironnement* env = GlobalEnvironnement::GetInstance();
     Aspirateur* asp = new Aspirateur(env->Cases()[0][0]);
 	Affichage* aff = new Affichage(env, asp);
 
@@ -15,7 +15,7 @@ int main()
     std::thread thread_asp;
 	std::thread thread_aff;
 
-	thread_env = std::thread(&Environnement::Execute, env);
+	thread_env = std::thread(&GlobalEnvironnement::Execute, env);
 	thread_asp = std::thread(&Aspirateur::Execute, asp);
 	thread_aff = std::thread(&Affichage::Execute, aff);
 
