@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "CaseEnvironnement.h"
-#include "Environnement.h"//ToCheck
+#include "RobotEnvironnement.h"
 
 class Aspirateur {
 public:
@@ -19,6 +19,7 @@ public:
 	//bool PickUpJewel(CaseEnvironnement* suckedCase);
 
 private:
+	RobotEnvironnement environnement;
 	CaseEnvironnement* currentRoom;
 	int energy;
 	std::vector<int[2]> Goals;
