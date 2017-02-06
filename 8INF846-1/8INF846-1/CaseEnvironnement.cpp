@@ -1,10 +1,8 @@
 #include "CaseEnvironnement.h"
 
 
-CaseEnvironnement::CaseEnvironnement()
+CaseEnvironnement::CaseEnvironnement(int _id):id(_id),poussiere(0),jewels(0)
 {
-    Poussiere(0);
-    Jewels(0);
 }
 
 

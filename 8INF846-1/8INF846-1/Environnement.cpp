@@ -5,15 +5,17 @@
 
 Environnement::Environnement() : jewelsLost(0)
 {
-	int taille = 5;
+	int taille(5);
+	int caseCurrentID(0);
 	CaseEnvironnement* aCase;
 	std::vector<CaseEnvironnement*> ligne;
 	srand(time(NULL));
 
 	for (unsigned int i = 0; i < taille; i++) {
 		for (unsigned int j = 0; j < taille; j++) {
-			aCase = new CaseEnvironnement();
-			allRooms.push_back(aCase);
+			aCase = new CaseEnvironnement(caseCurrentID);
+			allRooms.emplace(caseCurrentID,aCase);
+			++caseCurrentID;
 			ligne.push_back(aCase);
 		}
 		cases.push_back(ligne);

@@ -3,7 +3,7 @@
 
 class CaseEnvironnement {
 public:
-    CaseEnvironnement();
+    CaseEnvironnement(int _id);
     ~CaseEnvironnement();
 
     int Poussiere() const
@@ -30,5 +30,6 @@ private:
 	std::vector<CaseEnvironnement*> adjacentRooms;
     int poussiere;
     int jewels;
+	int id;
 };
 
