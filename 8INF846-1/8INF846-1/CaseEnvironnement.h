@@ -22,6 +22,10 @@ public:
     {
         jewels = val;
     }
+	int ID() const
+	{
+		return id;
+	}
 
 	std::vector<CaseEnvironnement*> AdjacentRooms() const { return adjacentRooms; }
 	void AdjacentRooms(std::vector<CaseEnvironnement*> val) { adjacentRooms = val; }

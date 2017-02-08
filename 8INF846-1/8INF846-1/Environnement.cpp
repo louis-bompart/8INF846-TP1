@@ -3,6 +3,12 @@
 
 #include "Environnement.h"
 
+CaseEnvironnement * Environnement::getCase(CaseEnvironnement * input)
+{
+	
+	return allRooms.at(input->ID());
+}
+
 Environnement::Environnement() : jewelsLost(0)
 {
 	int taille(5);

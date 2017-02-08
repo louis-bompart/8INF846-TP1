@@ -10,7 +10,7 @@ public:
 	virtual void ClearCase(CaseEnvironnement* suckedCase) = 0;
 	virtual bool RemoveJewel(CaseEnvironnement* suckedCase) = 0;
 	std::map<int,CaseEnvironnement*> getAllRooms() { return allRooms; }
-
+	CaseEnvironnement* getCase(CaseEnvironnement* input);
 	Environnement();
 	~Environnement();
 
