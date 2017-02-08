@@ -154,6 +154,7 @@
     <ClCompile Include="Environnement.cpp" />
     <ClCompile Include="GlobalEnvironnement.cpp" />
     <ClCompile Include="Move.cpp" />
+    <ClCompile Include="PickUp.cpp" />
     <ClCompile Include="RobotEnvironnement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Environnement.h" />
     <ClInclude Include="GlobalEnvironnement.h" />
     <ClInclude Include="Move.h" />
+    <ClInclude Include="PickUp.h" />
     <ClInclude Include="RobotEnvironnement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
