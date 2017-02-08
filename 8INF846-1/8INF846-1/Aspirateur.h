@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
+#include <queue>
 #include "CaseEnvironnement.h"
 #include "RobotEnvironnement.h"
+#include "Move.h"
 
 class Aspirateur {
 public:
@@ -22,6 +24,8 @@ private:
 	RobotEnvironnement environnement;
 	CaseEnvironnement* currentRoom;
 	int energy;
-	std::vector<int[2]> Goals;
+	//TODO maybe to remove the next line
+	//std::vector<int[2]> Goals;
+	std::queue<Action *> Goals;
 };
 
