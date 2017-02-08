@@ -16,7 +16,7 @@ public:
 	void CurrentRoom(CaseEnvironnement* val) { currentRoom = val; }
 	void ConsumeEnergy() { energy++; }
 	void ResetEnergy() { energy = 0; }
-
+	RobotEnvironnement getEnvironnement() { return environnement; }
 	//void SuckCase(CaseEnvironnement* suckedCase);
 	//bool PickUpJewel(CaseEnvironnement* suckedCase);
 
