@@ -28,7 +28,8 @@ std::queue<CaseEnvironnement*> Aspirateur::DepthLimitedSearch(int * valueTab, in
 {
 	Plan whereToGo;
 	whereToGo.path.push(currentRoom);
-	whereToGo = RecursiveDLS(whereToGo, valueTab, energyToConsume);
+	// energyToConsume + 1 : the +1 is to avoid consuming energy to move to the current case.
+	whereToGo = RecursiveDLS(whereToGo, valueTab, energyToConsume + 1);
 	return whereToGo.path;
 }
 
