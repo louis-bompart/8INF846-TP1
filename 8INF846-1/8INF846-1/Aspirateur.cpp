@@ -23,6 +23,73 @@ void Aspirateur::Execute()
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }
+
+std::queue<CaseEnvironnement*> Aspirateur::DepthLimitedSearch(int * valueTab, int energyToConsume)
+{
+	Plan whereToGo;
+	whereToGo.path.push(currentRoom);
+	whereToGo = RecursiveDLS(whereToGo, valueTab, energyToConsume);
+	return whereToGo.path;
+}
+
+Plan Aspirateur::RecursiveDLS(Plan whereToGo, int * valueTab, int energyToConsume)
+{
+	// create the bestPlan to compare.
+	Plan bestPlan = whereToGo;
+	//remove the energy for this case.
+	--energyToConsume;
+	if (whereToGo.path.back()->Jewels() == 1) {
+		--energyToConsume;
+	}
+	if (whereToGo.path.back()->Poussiere() == 1) {
+		--energyToConsume;
+	}
+	// search for the next case if there is enough energy
+	for each (CaseEnvironnement* voisin in whereToGo.path.back()->AdjacentRooms())
+	{
+		// summ of the energy needed
+		int energyNeeded = voisin->Jewels() + voisin->Poussiere() + 1;
+		//walk to the neighboor
+		if (energyToConsume - energyNeeded >= 0) {
+			Plan newWay = whereToGo;
+			// summ of the points for the case
+			int points = 0;
+			if (voisin->Jewels == 1)
+				if (voisin->Poussiere())
+					points += valueTab[3];
+				else
+					points += valueTab[2];
+			else
+				if (voisin->Poussiere())
+					points += valueTab[1];
+				else
+					points += valueTab[0];
+			newWay.value += points;
+			newWay.path.push(voisin);
+			Plan onTheWay = RecursiveDLS(newWay, valueTab, energyToConsume);
+			if (onTheWay.value > bestPlan.value)
+				bestPlan = onTheWay;
+		}
+	}
+	return bestPlan;
+}
+std::queue<Action*> Aspirateur::pathToActions(std::queue<CaseEnvironnement*> path)
+{
+	std::queue<Action*> toDo;
+	while (!path.empty()) {
+		CaseEnvironnement * position = path.front();
+		path.pop();
+		if (position->Jewels() == 1) {
+			toDo.push(new PickUp(this, position));
+		}
+		if (position->Poussiere() == 1) {
+			toDo.push(new Vacumize(this, position));
+		}
+		if (!path.empty())
+			toDo.push(new Move(this, path.front()));
+	}
+	return toDo;
+}
 //
 //void Aspirateur::SuckCase(CaseEnvironnement * suckedCase)
 //{

@@ -42,10 +42,10 @@
     <ClCompile Include="Action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vacuumize.cpp">
+    <ClCompile Include="PickUp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PickUp.cpp">
+    <ClCompile Include="Vacumize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <ClInclude Include="Action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vacuumize.h">
+    <ClInclude Include="PickUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PickUp.h">
+    <ClInclude Include="Vacumize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

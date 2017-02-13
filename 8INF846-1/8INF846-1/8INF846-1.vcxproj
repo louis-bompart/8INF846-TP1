@@ -156,7 +156,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="PickUp.cpp" />
     <ClCompile Include="RobotEnvironnement.cpp" />
-    <ClCompile Include="Vacuumize.cpp" />
+    <ClCompile Include="Vacumize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -168,7 +168,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="PickUp.h" />
     <ClInclude Include="RobotEnvironnement.h" />
-    <ClInclude Include="Vacuumize.h" />
+    <ClInclude Include="Vacumize.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

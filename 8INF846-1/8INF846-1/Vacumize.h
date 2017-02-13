@@ -3,12 +3,12 @@
 #include "Aspirateur.h"
 #include "GlobalEnvironnement.h"
 
-class Vacuumize :
+class Vacumize :
 	public Action
 {
 public:
-	Vacuumize(Aspirateur * _asp, CaseEnvironnement * _caseToAct);
-	~Vacuumize();
+	Vacumize(Aspirateur * _asp, CaseEnvironnement * _caseToAct);
+	~Vacumize();
 	int doAction();
 };
 
