@@ -30,7 +30,8 @@ void Affichage::Execute() {
 		std::cout << "Energie totale consommee: " << asp->getEnergyConsumed() << std::endl;
 		std::cout << "Energie avant rafraichissement: " << asp->getMaxEnergy() << std::endl;
 		std::cout << "Difference de score depuis le dernier apprentissage: " << asp->getDeltaScore() << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::cout << "Score actuel: " << Heuristic::GetInstance()->getScore() << std::endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 		system("cls");
 	}
 }

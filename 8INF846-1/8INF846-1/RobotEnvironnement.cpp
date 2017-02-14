@@ -1,7 +1,5 @@
 #include "RobotEnvironnement.h"
 
-
-
 RobotEnvironnement::RobotEnvironnement()
 {
 }
@@ -17,10 +15,9 @@ void RobotEnvironnement::ClearCase(CaseEnvironnement * suckedCase)
 	RemoveJewel(suckedCase);
 }
 
-bool RobotEnvironnement::RemoveJewel(CaseEnvironnement * suckedCase)
+void RobotEnvironnement::RemoveJewel(CaseEnvironnement * suckedCase)
 {
 	suckedCase->Jewels(0);
-	return true;
 }
 
 void RobotEnvironnement::UpdateData() {

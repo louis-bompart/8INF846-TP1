@@ -1,13 +1,10 @@
 #include "Move.h"
 
-
 int Move::doAction()
 {
 	Action::doAction();
+	Heuristic::GetInstance()->updateScore(Heuristic::Moved);
 	std::vector<CaseEnvironnement*> adjacentRooms = asp->CurrentRoom()->AdjacentRooms();
-	/*if (std::find_if(adjacentRooms.begin(), adjacentRooms.end(), caseToAct->isEqual) == adjacentRooms.end()) {
-		return 1;
-	}*/
 	asp->CurrentRoom(caseToAct);
 	return 0;
 }
@@ -15,7 +12,6 @@ int Move::doAction()
 Move::Move(Aspirateur * _asp, CaseEnvironnement * _caseToAct) : Action(_asp, _caseToAct)
 {
 }
-
 
 Move::~Move()
 {

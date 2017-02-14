@@ -2,6 +2,7 @@
 #include "Action.h"
 #include "Aspirateur.h"
 #include "CaseEnvironnement.h"
+#include "Heuristic.h"
 #include <algorithm>
 
 class Move : public Action

@@ -1,6 +1,7 @@
 #pragma once
 #include "GlobalEnvironnement.h"
 #include "Aspirateur.h"
+#include "Heuristic.h"
 
 class Affichage
 {
@@ -10,7 +11,7 @@ public:
 
 	void Execute();
 
-private: 
+private:
 	GlobalEnvironnement* env;
 	Aspirateur* asp;
 };

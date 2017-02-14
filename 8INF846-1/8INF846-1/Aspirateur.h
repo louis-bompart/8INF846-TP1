@@ -8,6 +8,7 @@
 #include "Move.h"
 #include "PickUp.h"
 #include "Vacumize.h"
+#include "Heuristic.h"
 
 struct Plan {
 	int value;
@@ -22,44 +23,37 @@ public:
 
 	void Execute();
 
+	RobotEnvironnement getEnvironnement() { return environnement; }
+
 	CaseEnvironnement* CurrentRoom() const { return currentRoom; }
 	void CurrentRoom(CaseEnvironnement* val) { currentRoom = val; }
+
+	std::deque<CaseEnvironnement *> DepthLimitedSearch(int energyToConsume);
+	Plan RecursiveDLS(Plan whereToGo, int energyToConsume);
+	std::queue<Action *> pathToActions(std::deque<CaseEnvironnement *> path);
+
+	int getMaxEnergy() { return maxEnergy; }
+
+	int getEnergyConsumed() { return energy; }
 	void ConsumeEnergy() { energy++; }
 	void ResetEnergy() { energy = 0; }
-	RobotEnvironnement getEnvironnement() { return environnement; }
-	std::deque<CaseEnvironnement *> DepthLimitedSearch(int valueTab[4], int energyToConsume);
-	Plan RecursiveDLS(Plan whereToGo, int valueTab[4], int energyToConsume);
-	std::queue<Action *> pathToActions(std::deque<CaseEnvironnement *> path);
-	int getMaxEnergy() { return maxEnergy; }
-	int getEnergyConsumed() { return energy; }
+
 	float getDeltaScore() { return deltaScore; }
-
-
-	//void SuckCase(CaseEnvironnement* suckedCase);
-	//bool PickUpJewel(CaseEnvironnement* suckedCase);
+	float getCurrentScore() { return currentScore; }
 
 private:
 	RobotEnvironnement environnement;
 	CaseEnvironnement* currentRoom;
+	std::queue<Action *> Goals;
+
 	int energy;
 	int maxEnergy;
+
+	int const nbPlanBeforeUpdate;
+
 	float oldScore;
+	float currentScore;
 	float epsilon;
 	float deltaScore;
-	//TODO maybe to remove the next line
-	//std::vector<int[2]> Goals;
-	std::queue<Action *> Goals;
-	int heuristic[4] =
-	{
-		//Empty case
-		0,
-		//Poussiere only
-		2,
-		//Jewel only
-		0,
-		//Jewel and Poussiere
-		1
-	};
-	
 };
 

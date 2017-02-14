@@ -6,9 +6,8 @@
 class RobotEnvironnement : public Environnement
 {
 public:
-	int getJewelsLost() { return jewelsLost; }
 	void ClearCase(CaseEnvironnement* suckedCase);
-	bool RemoveJewel(CaseEnvironnement* suckedCase);
+	void RemoveJewel(CaseEnvironnement* suckedCase);
 
 	RobotEnvironnement();
 	~RobotEnvironnement();
