@@ -88,16 +88,13 @@ Plan Aspirateur::RecursiveDLS(Plan whereToGo, int energyToConsume)
 	// create the bestPlan to compare.
 	Plan bestPlan = whereToGo;
 	//remove the energy for this case.
-	//--energyToConsume;
-	//EmptyCase is about the same as JewelOnly, because the robot ignore Jewels if possible
-	energyToConsume -= Heuristic::EmptyCase;
+	--energyToConsume;
 	if (whereToGo.path.back()->Poussiere() == 1) {
 
 		if (whereToGo.path.back()->Jewels() == 1) {
-			//--energyToConsume;
-			energyToConsume -= Heuristic::JewelAndPoussiere;
+			--energyToConsume;
 		}
-		energyToConsume -= Heuristic::PoussiereOnly;
+		--energyToConsume;
 	}
 	// search for the next case if there is enough energy
 	for each (CaseEnvironnement* neighboor in whereToGo.path.back()->AdjacentRooms())
