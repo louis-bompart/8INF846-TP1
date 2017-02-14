@@ -16,7 +16,7 @@ void GlobalEnvironnement::Execute()
 			randomJewels = rand() % getAllRooms().size();
 			getAllRooms()[randomJewels]->Jewels(1);
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		std::this_thread::sleep_for(std::chrono::milliseconds(2));
 	}
 }
 
@@ -43,7 +43,7 @@ bool GlobalEnvironnement::RemoveJewel(CaseEnvironnement * suckedCase)
 int GlobalEnvironnement::getJewelsLost()
 {
 	int temp = jewelsLost;
-	allJewelsLost += jewelsLost;
+	//allJewelsLost += jewelsLost;
 	jewelsLost = 0;
 	return temp;
 }

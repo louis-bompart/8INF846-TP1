@@ -7,7 +7,8 @@ class Action
 public:
 	Action(Aspirateur* _asp, CaseEnvironnement* _caseToAct);
 	~Action();
-	virtual int doAction()=0;
+	virtual int doAction();
+	CaseEnvironnement* getCaseToAct() const { return caseToAct; }
 protected:
 	Aspirateur* asp;
 	CaseEnvironnement* caseToAct;

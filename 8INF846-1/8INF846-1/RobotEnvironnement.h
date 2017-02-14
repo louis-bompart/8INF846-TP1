@@ -1,6 +1,9 @@
 #pragma once
 #include "Environnement.h"
-class RobotEnvironnement : private Environnement
+#include "GlobalEnvironnement.h"
+#include <map>
+
+class RobotEnvironnement : public Environnement
 {
 public:
 	int getJewelsLost() { return jewelsLost; }
@@ -10,6 +13,6 @@ public:
 	RobotEnvironnement();
 	~RobotEnvironnement();
 
-	void UpdateData() {}
+	void UpdateData();
 };
 

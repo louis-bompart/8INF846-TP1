@@ -14,10 +14,11 @@ public:
 		}
 		return instance;
 	}
-	
+
 	void ClearCase(CaseEnvironnement* suckedCase);
 	bool RemoveJewel(CaseEnvironnement* suckedCase);
 	int getJewelsLost();
+	int getAllJewelsLost() { return allJewelsLost; }
 
 private:
 	GlobalEnvironnement();
@@ -26,6 +27,6 @@ private:
 	static GlobalEnvironnement* instance;
 	//TODO Afficher le nombre total de bijoux perdus.
 	int allJewelsLost;
-	void oneMoreJewel() { jewelsLost++; }
+	void oneMoreJewel() { jewelsLost++; allJewelsLost++; }
 };
 

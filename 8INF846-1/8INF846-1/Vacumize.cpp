@@ -1,6 +1,7 @@
 #include "Vacumize.h"
 
 int Vacumize::doAction() {
+	Action::doAction();
 	asp->getEnvironnement().ClearCase(asp->CurrentRoom());
 	GlobalEnvironnement::GetInstance()->ClearCase(GlobalEnvironnement::GetInstance()->getCase(asp->CurrentRoom()));
 	return 0;

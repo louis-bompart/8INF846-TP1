@@ -3,10 +3,11 @@
 
 int Move::doAction()
 {
+	Action::doAction();
 	std::vector<CaseEnvironnement*> adjacentRooms = asp->CurrentRoom()->AdjacentRooms();
-	if (std::find(adjacentRooms.begin(), adjacentRooms.end(), caseToAct) == adjacentRooms.end()) {
+	/*if (std::find_if(adjacentRooms.begin(), adjacentRooms.end(), caseToAct->isEqual) == adjacentRooms.end()) {
 		return 1;
-	}
+	}*/
 	asp->CurrentRoom(caseToAct);
 	return 0;
 }

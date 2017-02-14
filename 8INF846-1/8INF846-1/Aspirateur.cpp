@@ -3,37 +3,70 @@
 #include <time.h>
 #include <thread>
 
-Aspirateur::Aspirateur(CaseEnvironnement* ce) : energy(0), currentRoom(ce)
+Aspirateur::Aspirateur(CaseEnvironnement* ce) : energy(0), currentRoom(ce), oldScore(0), epsilon(0.05), maxEnergy(1), deltaScore(0)
 {
 }
 
 void Aspirateur::Execute()
 {
-	srand(time(NULL));
+	int actionsTillUpdate = 5;
+	float score = 0;
+	bool isLearning = true;
+	//srand(time(NULL));
 	while (true) {
-		std::vector<CaseEnvironnement*> adjRooms = currentRoom->AdjacentRooms();
-		int random = rand() % (adjRooms.size());
-		Goals.push(new Move(this, adjRooms[random]));
+
+		if (Goals.empty()) {
+			//Beliefs' update
+			environnement.UpdateData();
+
+			//Desires' update
+			if (isLearning)
+			{
+				actionsTillUpdate--;
+				score += GlobalEnvironnement::GetInstance()->getJewelsLost() / maxEnergy;
+				if (actionsTillUpdate < 0) {
+					score /= 5;
+					deltaScore = score - oldScore;
+					if (deltaScore < epsilon) {
+						maxEnergy++;
+						oldScore = score;
+					}
+					else {
+						maxEnergy--;
+						isLearning = false;
+					}
+					actionsTillUpdate = 5;
+				}
+			}
+
+			//Intentions' update
+			Goals = pathToActions(DepthLimitedSearch(heuristic, maxEnergy));
+		}
+		else {
+			Goals.front()->doAction();
+			Goals.pop();
+		}
+		//std::vector<CaseEnvironnement*> adjRooms = currentRoom->AdjacentRooms();
+		//int random = rand() % (adjRooms.size());
+		//Goals.push(new Move(this, adjRooms[random]));
 		/*srand(time(NULL));
 		std::vector<CaseEnvironnement*> adjRooms = currentRoom->AdjacentRooms();
 		int random = rand() % (adjRooms.size());*/
 		//currentRoom = adjRooms[random];
-		Goals.front()->doAction();
-		Goals.pop();
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 }
 
-std::queue<CaseEnvironnement*> Aspirateur::DepthLimitedSearch(int * valueTab, int energyToConsume)
+std::deque<CaseEnvironnement*> Aspirateur::DepthLimitedSearch(int valueTab[4], int energyToConsume)
 {
 	Plan whereToGo;
-	whereToGo.path.push(currentRoom);
+	whereToGo.path.push_back(environnement.getCase(currentRoom));
 	// energyToConsume + 1 : the +1 is to avoid consuming energy to move to the current case.
 	whereToGo = RecursiveDLS(whereToGo, valueTab, energyToConsume + 1);
 	return whereToGo.path;
 }
 
-Plan Aspirateur::RecursiveDLS(Plan whereToGo, int * valueTab, int energyToConsume)
+Plan Aspirateur::RecursiveDLS(Plan whereToGo, int valueTab[4], int energyToConsume)
 {
 	// create the bestPlan to compare.
 	Plan bestPlan = whereToGo;
@@ -48,38 +81,40 @@ Plan Aspirateur::RecursiveDLS(Plan whereToGo, int * valueTab, int energyToConsum
 	// search for the next case if there is enough energy
 	for each (CaseEnvironnement* voisin in whereToGo.path.back()->AdjacentRooms())
 	{
-		// summ of the energy needed
-		int energyNeeded = voisin->Jewels() + voisin->Poussiere() + 1;
-		//walk to the neighboor
-		if (energyToConsume - energyNeeded >= 0) {
-			Plan newWay = whereToGo;
-			// summ of the points for the case
-			int points = 0;
-			if (voisin->Jewels == 1)
-				if (voisin->Poussiere())
-					points += valueTab[3];
+		if (std::find(whereToGo.path.begin(), whereToGo.path.end(), voisin) == whereToGo.path.end()) {
+			// summ of the energy needed
+			int energyNeeded = voisin->Jewels() + voisin->Poussiere() + 1;
+			//walk to the neighboor
+			if (energyToConsume - energyNeeded >= 0) {
+				Plan newWay = whereToGo;
+				// summ of the points for the case
+				int points = 0;
+				if (voisin->Jewels() == 1)
+					if (voisin->Poussiere() == 1)
+						points = valueTab[3];
+					else
+						points = valueTab[2];
 				else
-					points += valueTab[2];
-			else
-				if (voisin->Poussiere())
-					points += valueTab[1];
-				else
-					points += valueTab[0];
-			newWay.value += points;
-			newWay.path.push(voisin);
-			Plan onTheWay = RecursiveDLS(newWay, valueTab, energyToConsume);
-			if (onTheWay.value > bestPlan.value)
-				bestPlan = onTheWay;
+					if (voisin->Poussiere() == 1)
+						points = valueTab[1];
+					else
+						points = valueTab[0];
+				newWay.value += points;
+				newWay.path.push_back(voisin);
+				Plan onTheWay = RecursiveDLS(newWay, valueTab, energyToConsume);
+				if (onTheWay.value >= bestPlan.value)
+					bestPlan = onTheWay;
+			}
 		}
 	}
 	return bestPlan;
 }
-std::queue<Action*> Aspirateur::pathToActions(std::queue<CaseEnvironnement*> path)
+std::queue<Action*> Aspirateur::pathToActions(std::deque<CaseEnvironnement*> path)
 {
 	std::queue<Action*> toDo;
 	while (!path.empty()) {
 		CaseEnvironnement * position = path.front();
-		path.pop();
+		path.pop_front();
 		if (position->Jewels() == 1) {
 			toDo.push(new PickUp(this, position));
 		}
