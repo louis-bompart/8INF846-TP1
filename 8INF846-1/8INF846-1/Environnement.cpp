@@ -3,17 +3,25 @@
 
 #include "Environnement.h"
 
-Environnement::Environnement()
+CaseEnvironnement * Environnement::getCase(CaseEnvironnement * input)
 {
-	int taille = 5;
+	
+	return allRooms.at(input->ID());
+}
+
+Environnement::Environnement() : jewelsLost(0)
+{
+	int taille(5);
+	int caseCurrentID(0);
 	CaseEnvironnement* aCase;
 	std::vector<CaseEnvironnement*> ligne;
 	srand(time(NULL));
 
 	for (unsigned int i = 0; i < taille; i++) {
 		for (unsigned int j = 0; j < taille; j++) {
-			aCase = new CaseEnvironnement();
-			allRooms.push_back(aCase);
+			aCase = new CaseEnvironnement(caseCurrentID);
+			allRooms.emplace(caseCurrentID,aCase);
+			++caseCurrentID;
 			ligne.push_back(aCase);
 		}
 		cases.push_back(ligne);
@@ -39,27 +47,6 @@ Environnement::Environnement()
 		}
 	}
 }
-
-
-void Environnement::Execute()
-{
-	while (true) {
-		int random = rand() % 3;
-		int randomDust;
-		int randomJewels;
-		for (int i = 0; i < random; i++) {
-			randomDust = rand() % allRooms.size();
-			allRooms[randomDust]->Poussiere(1);
-		}
-		random = rand() % 2;
-		for (int i = 0; i < random; i++) {
-			randomJewels = rand() % allRooms.size();
-			allRooms[randomJewels]->Jewels(1);
-		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	}
-}
-
 
 Environnement::~Environnement()
 {

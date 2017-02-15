@@ -1,17 +1,18 @@
 #pragma once
-#include "Environnement.h"
+#include "GlobalEnvironnement.h"
 #include "Aspirateur.h"
+#include "Heuristic.h"
 
 class Affichage
 {
 public:
-	Affichage(Environnement* env, Aspirateur* asp);
+	Affichage(GlobalEnvironnement* env, Aspirateur* asp);
 	~Affichage();
 
 	void Execute();
 
-private: 
-	Environnement* env;
+private:
+	GlobalEnvironnement* env;
 	Aspirateur* asp;
 };
 

@@ -1,29 +1,22 @@
 #pragma once
 #include <vector>
+#include <map>
 #include "CaseEnvironnement.h"
-
 
 class Environnement {
 public:
-	static Environnement* GetInstance() {
-		if (instance == nullptr) {
-			instance = new Environnement();
-		}
-		return instance;
-	}
 
-	std::vector<std::vector<CaseEnvironnement*>> Cases() const
-	{
-		return cases;
-	}
-	void Execute();
-
-private:
-	std::vector<std::vector<CaseEnvironnement*>> cases;
-	std::vector<CaseEnvironnement*> allRooms;
-	static Environnement* instance;
-
+	virtual void ClearCase(CaseEnvironnement* suckedCase) = 0;
+	virtual void RemoveJewel(CaseEnvironnement* suckedCase) = 0;
+	std::map<int,CaseEnvironnement*> getAllRooms() { return allRooms; }
+	CaseEnvironnement* getCase(CaseEnvironnement* input);
 	Environnement();
 	~Environnement();
+
+protected:
+
+	std::map<int,CaseEnvironnement*> allRooms;
+	int jewelsLost;
+	std::vector<std::vector<CaseEnvironnement*>> cases;
 };
 

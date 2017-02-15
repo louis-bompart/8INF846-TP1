@@ -147,16 +147,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="8INF846.cpp" />
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="Affichage.cpp" />
     <ClCompile Include="Aspirateur.cpp" />
     <ClCompile Include="CaseEnvironnement.cpp" />
     <ClCompile Include="Environnement.cpp" />
+    <ClCompile Include="GlobalEnvironnement.cpp" />
+    <ClCompile Include="Heuristic.cpp" />
+    <ClCompile Include="Move.cpp" />
+    <ClCompile Include="PickUp.cpp" />
+    <ClCompile Include="RobotEnvironnement.cpp" />
+    <ClCompile Include="Vacumize.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Affichage.h" />
     <ClInclude Include="Aspirateur.h" />
     <ClInclude Include="CaseEnvironnement.h" />
     <ClInclude Include="Environnement.h" />
+    <ClInclude Include="GlobalEnvironnement.h" />
+    <ClInclude Include="Heuristic.h" />
+    <ClInclude Include="Move.h" />
+    <ClInclude Include="PickUp.h" />
+    <ClInclude Include="RobotEnvironnement.h" />
+    <ClInclude Include="Vacumize.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
