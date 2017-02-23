@@ -1,4 +1,5 @@
-# 8INF846-Intelligence-artificielle
+# 8INF846-TP1:
+## Vacu-bot, ready for duty !
 
 This program has been made for an assignment in the Artificial Intelligence course at UQAC.
 The program has 2 main elements:
